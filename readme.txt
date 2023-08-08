@@ -1,6 +1,7 @@
 === Gravity Forms IP Location Add-On ===
 Contributors: Dean Oakley
-Donate link: https://thriveweb.com.au
+Author URI: http://thriveweb.com.au
+Plugin URI: https://thriveweb.com.au/the-lab/gravity-forms-ip-location-add-on/
 Tags: gravity forms, ip location, country, ip address
 Requires at least: 5.6
 Tested up to: 6.2
