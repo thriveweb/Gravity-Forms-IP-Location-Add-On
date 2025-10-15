@@ -1001,29 +1001,34 @@ class GFIPLocationAddOn extends GFAddOn {
      */
     public function get_form_settings($form) {
         $settings = parent::get_form_settings($form);
-        
+
+        if (!is_array($settings)) {
+            $this->log_debug(__METHOD__ . "(): parent::get_form_settings returned non-array, normalizing to empty array");
+            $settings = array();
+        }
+
         if (!empty($form['id'])) {
             $this->log_debug(__METHOD__ . "(): Getting form settings for form #{$form['id']}");
         }
-        
-        // Make sure allowed_countries is always an array
+
+        // Ensure allowed_countries is always an array
         if (isset($settings['allowed_countries'])) {
             if (is_string($settings['allowed_countries'])) {
                 // If it's a comma-separated string, split it
                 if (strpos($settings['allowed_countries'], ',') !== false) {
                     $settings['allowed_countries'] = array_map('trim', explode(',', $settings['allowed_countries']));
-                } else if (!empty($settings['allowed_countries'])) {
+                } elseif (!empty($settings['allowed_countries'])) {
                     $settings['allowed_countries'] = array($settings['allowed_countries']);
                 } else {
                     $settings['allowed_countries'] = array();
                 }
-            } else if (!is_array($settings['allowed_countries'])) {
+            } elseif (!is_array($settings['allowed_countries'])) {
                 $settings['allowed_countries'] = array();
             }
         } else {
             $settings['allowed_countries'] = array();
         }
-        
+
         return $settings;
     }
     
